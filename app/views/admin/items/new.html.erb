@@ -1,0 +1,28 @@
+<h2 class= 'mt-3'>商品新規登録画面</h2>
+<div class = 'row'>
+    <%= form_with model:@item, url: admin_items_path, local: true do |f| %>
+      <div class='form-group'>
+        <label for='item_name'>NAME</label>
+        <%= f.text_field :name, class: "form-control name", placeholder: 'name' %>
+      </div>
+      <div class="form-group">
+        <label for = "item_image">商品写真</label>
+          <%= f.attachment_field :image, class: "form-control-file item_image"%>
+      </div>
+      <div class="form-group">
+        <label for = "item_introduciton">商品説明</label>
+          <%= f.text_area :introduction, class: "form-control-file item_introduction", placeholder: 'content' %>
+      </div>
+      <div class="form-group">
+        <label for = "item_price">税抜き価格</label>
+          <%= f.text_field :price, class: "form-control-file item_price", placeholder: 'price' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :sales_status, '販売ステータス' %>
+          <%= f.select :sales_status,{'販売中':false, '販売休止/売り切れ':true}, { class: 'form-control',required: true} %>
+      </div>
+      <div class='form-group'>
+        <%= f.submit '新規登録', class: 'btn btn-success' %>
+      </div>
+    <% end %>
+</div>
