@@ -1,0 +1,42 @@
+<main>
+  <!--ヘッダーとメインの間隔を開ける-->
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-8 offset-md-1">
+        <h2 class='fas fa-user'>マイページ</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>氏名</td>
+              <td><%= @customer.last_name %>&nbsp;<%= @customer.first_name %></td>
+            </tr>
+            <tr>
+              <td>カナ</td>
+              <td><%= @customer.last_name_kana %>&nbsp;<%= @customer.first_name_kana %></td>
+            </tr>
+            <tr>
+              <td>郵便番号</td>
+              <td><%= @customer.postal_code %></td>
+            </tr>
+            <tr>
+              <td>住所</td>
+              <td><%= @customer.address %></td>
+            </tr>
+            <tr>
+              <td>電話番号</td>
+              <td><%= @customer.telephone_number %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @customer.email %></td>
+            </tr>
+            <tr>
+              <td><%= link_to 'マイページ編集', edit_public_customers_path, class: "btn btn-primary" %></td>
+              <td><%=link_to 'パスワード変更', class: "btn btn-primary" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

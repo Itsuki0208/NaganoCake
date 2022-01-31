@@ -1,28 +1,38 @@
 <main>
   <div class="container px-5 px-sm-0">
-    <div class="row">
-      <div class="col-md-8 offset-md-1">
-        <h2>会員詳細画面</h2>
-        <table class="table table-hover table-inverse">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Opinion</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @book.each do |book|%>
-              <tr>
-                <td><%= attachment_image_tag @user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></td>
-                <td><%= link_to book.title, book_path(book) %></td>
-                <td><%= book.body %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2><br>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>氏名</td>
+          <td><%= @customer.last_name %>&nbsp;<%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <td>カナ</td>
+          <td><%= @customer.last_name_kana %>&nbsp;<%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <td><%= link_to '編集を行う', edit_admin_customer_path, class: "btn btn-primary" %></td>
+          <td><%=link_to '注文履歴', class: "btn btn-primary" %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </main>

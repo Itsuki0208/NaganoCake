@@ -6,13 +6,14 @@ Rails.application.routes.draw do
    registrations: 'customers/registrations'
    }
   
-  scope module: :customers do
+  scope module: :public do
    root 'homes#top'
    get 'about' => 'items#about'
   end
     
-  namespace :customers do
-   resources :customers, only:[:show, :edit, :update]
+  namespace :public do
+   resource :customers, only:[:show, :edit, :update]
+   resources :items, only:[:index, :show]
    # ↓顧客の退会確認画面＆顧客の退会処理(ステータスの更新)
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    patch '/customers/withdrawl' => 'customers#withdrawl'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
    
   namespace :admin do
    root :to => 'homes#top'
+   resources :genres, only:[:index, :create, :edit, :update]
    resources :items, only:[:index, :new, :create, :show, :edit, :update]
    resources :customers, only:[:index, :show, :edit, :update]
   end
