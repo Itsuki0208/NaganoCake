@@ -1,7 +1,7 @@
 <main>
   <div class='container'>
     <h4 class='fas fa user-edit'>ユーザー情報編集</h4>
-    <%= form_with model:@customer, url:public_customer_path, local: true do |f| %>
+    <%= form_with model:@customer, url:public_customers_path, local: true do |f| %>
       <div class ='row user_edit'>
       <table class="table">
           <tbody>
@@ -31,7 +31,7 @@
             </tr>
           </tbody>
         </table>
-        <%= f.submit '編集登録' %></div>
+        <%= f.submit '編集登録' %>
     <% end %>
 
   </div>
