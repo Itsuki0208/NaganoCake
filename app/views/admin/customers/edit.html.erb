@@ -1,0 +1,45 @@
+<main>
+  <div class="container">
+    <h2 class='fas fa user-edit'>会員詳細編集</h2>
+    <%= form_with model:@customer, url:admin_customer_path, local:true do |f| %>
+      <div class='row'>
+        <table>
+          <tbody>
+            <tr>
+              <td>氏名（姓）</td>
+              <td><%= f.text_field:last_name %></td>
+              <td>氏名（姓）</td>
+              <td><%= f.text_field:first_name %></td><br />
+            </tr>
+            <tr>
+              <td>カナ(セイ)</td>
+              <td><%= f.text_field:last_name_kana %></td>
+              <td>カナ(メイ)</td>
+              <td><%= f.text_field:first_name_kana %></td>
+            </tr><br />
+            <tr>
+              <td>郵便番号</td>
+              <td><%= f.text_field:postal_code %></td>
+            </tr>
+            <div class ="mb-3">
+              <tr>
+                <td>住所</td>
+                <td><%= f.text_field :address, class: "form-label" %></td>
+              </tr>
+            </div>
+            <tr>
+              <td>電話番号</td>
+              <td><%= f.text_field:telephone_number %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= f.text_field:email, class: 'form-label' %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= f.submit '編集登録' %>
+     <% end%>
+     <%= link_to "戻る", admin_customer_path(@customer) %>
+  </div>
+</main>
