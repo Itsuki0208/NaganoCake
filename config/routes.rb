@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   namespace :public do
    resource :customers, only:[:show, :edit, :update]
    resources :items, only:[:index, :show]
+   resources :addresses, only:[:index, :create, :update, :destroy, :edit]
    # ↓顧客の退会確認画面＆顧客の退会処理(ステータスの更新)
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    patch '/customers/withdrawl' => 'customers#withdrawl'
+   
   end
   
   devise_for :admins, controllers: {
