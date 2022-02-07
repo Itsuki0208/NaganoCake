@@ -15,10 +15,13 @@ Rails.application.routes.draw do
    resource :customers, only:[:show, :edit, :update]
    resources :items, only:[:index, :show]
    resources :addresses, only:[:index, :create, :update, :destroy, :edit]
+   resources :cart_items, only:[:index, :create, :update, :destroy]
+   resources :orders, only:[:new, :index, :show, :create]
+   delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
    # ↓顧客の退会確認画面＆顧客の退会処理(ステータスの更新)
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    patch '/customers/withdrawl' => 'customers#withdrawl'
-   
+   # post '/orders/confirm' => 'orders#confirm'
   end
   
   devise_for :admins, controllers: {

@@ -1,0 +1,23 @@
+<div class="container takasa">
+  <div class="row">
+   	<div class="col-xs-9">
+  	  <div class="row" style="margin-top: 50px;">
+  	  	<div style="float: left; margin: 15px 50px;">
+          <%= attachment_image_tag @item, :image, size: "300x300", fallback: "no_image.jpg" %>
+        </div>
+  	  	<div style="width:400px; height:300px; float:left;">
+  	  	  <h3><%= @item.name %></h3><br>
+  	  	  <p><%= @item.introduction %></p>
+  	  	  <p class="price">¥<%= (@item.price*1.1).floor %><span style="font-size:12px;">（税込）</span></p>
+  	  	</div>
+  	  </div>
+      <div class="col-xs-5">
+        <%= form_with model: @cart_items, url: public_cart_items_path(item_id: @item), method: :post, local:true do |f| %>
+          <%= f.select :amount ,[['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+          <!-- f.selectでも可。placeholderで空欄時に個数選択を表示。選択数の最低値を設定するためにminを設定。 -->
+          <%= f.submit "カートに入れる" ,class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+  	</div>
+  </div>
+</div>
