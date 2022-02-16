@@ -1,7 +1,8 @@
 class Admin::ItemsController < ApplicationController
-  
+  before_action :authenticate_admin!,only: [:create,:edit,:update,:index, :show, :new]
+
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(10)
   end
 
   def show
@@ -19,13 +20,22 @@ class Admin::ItemsController < ApplicationController
     else
       render "new"
     end
-    
+
   end
 
   def edit
       @item = Item.find(params[:id])
   end
 
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item)
+      flash[:notice_update] = "ジャンル情報を更新しました！"
+    else
+      redirect_to edit_admin_item_path(@item)
+    end
+  end
 
   private
 

@@ -1,29 +1,42 @@
-<main>
-  <div class="container px-5 px-sm-0">
-    <div class="row">
-      <!--↑サイドツールにジャンルを入れる-->
-      <!--商品一覧-->
-      <div class="col-md-8 offset-md-1">
-        <!--画像背景挿入、時間差で変わるやつ-->
-        <h4 style = "font-family: HiraMinPro-W6; color: #000000; margin: 20px 0;" >ようこそながのCAKEへ！</br>
-        長野特産物をふんだんに使用したスイーツを味わいませんか？</h4>
-        
-        <h4 style = "recommeded_item", style = "font-family: HiraMinPro-W6; color: #000000; margin: 20px 0;">☆おすすめスイーツ☆</h4>
-        <!--↓ケーキの写真を貼り付ける-->
-        
-        <table class="table table-hover table-inverse">
-          <thead>
-            <tr>
-              <th>image</th>
-              <th>name</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
+<div class="container takasa">
+  <strong><%= notice %></strong>
+  <div class="row">
+    <div class="col-xs-9">
+      <!-- 画像背景 -->
+  		<div class="bg_top">
+        <!-- 白背景/サイト説明文 -->
+  			<div class="bg_top2">
+  			  <h2 class="font-text">
+  			  	ようこそ、NaganoCakeへ！
+          </h2>
+  			</div>
+  		</div>
+      <!-- オススメ商品表示 -->
+      <br>
+  		<h4 class="recommendation"><i class="fas fa-crown"></i> オススメ商品 <i class="fas fa-crown"></i></h4><br>
+  		<div class="row">
+
+
+        <div id="multiple-items">
+        <% @items.each do |item| %>
+          <div class="recommendation-items">
+            <%= link_to public_item_path(item.id) do %> <!-- 画像をクリックしたら商品詳細画面へ遷移 -->
+              <%= attachment_image_tag item, :image, size: "150x150",  fallback: "no_image.jpg"%><br>
+            <% end %>
+            <p><%= item.name %></p>
+            <p>¥<%= (item.price * 1.1).floor %></p> <!-- 税込計算式/.floor => 浮動小数点数の切り捨てを行うためFloatクラスのfloorメソッドを使用 -->
+          </div>
+        <% end %>
+　　　　　</div>
+        </div>
       </div>
+  	</div>
+
+  	<div class="row">
+  	  <div class="col-xs-9"></div>
+  	  <div class="col-xs-2">
+  	    <p><%= link_to "もっと見る＞", public_items_path %></p>
+  	  </div>
     </div>
+
   </div>
-</main>

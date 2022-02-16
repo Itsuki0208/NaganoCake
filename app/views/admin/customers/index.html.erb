@@ -6,6 +6,7 @@
           <tr>
             <th>会員id</th>
             <th>氏名</th>
+            <th>電話番号</th>
             <th>メールアドレス</th>
             <th>退会ステータス</th>
               <th colspan="5"></th>
@@ -16,11 +17,11 @@
               <tr>
                 <td><%= customer.id%></td>
                 <td><%= link_to admin_customer_path(customer.id) do %> <%= customer.last_name %> <%= customer.first_name %><% end %></td>
-                <td><%= customer.telephone_number %></td>
-                <td><%= customer.email%></td>
-                <!--<td> customer.withdrwal_active %></td>-->
+                <td><%= customer.telephone_number%></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.status %></td>
               </tr>
-            <% end %>  
+            <% end %>
           </tbody>
         </table>
       </div>

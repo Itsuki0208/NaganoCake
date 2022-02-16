@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
    	<div class="col-xs-9">
+   	  <h4><%= flash[:alert] %>!!</h4>
   	  <div class="row" style="margin-top: 50px;">
   	  	<div style="float: left; margin: 15px 50px;">
           <%= attachment_image_tag @item, :image, size: "300x300", fallback: "no_image.jpg" %>
@@ -12,8 +13,9 @@
   	  	</div>
   	  </div>
       <div class="col-xs-5">
-        <%= form_with model: @cart_item, url: public_cart_items_path(item_id: @item.id), local:true do |f| %>
+        <%= form_with model: @cart_item, url: public_cart_items_path(item_id: @item), local:true do |f| %>
           <%= f.select :amount ,[['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+           <%= f.hidden_field :item_id, :value => @item.id%>
           <!-- f.selectでも可。placeholderで空欄時に個数選択を表示。選択数の最低値を設定するためにminを設定。 -->
           <%= f.submit "カートに入れる" ,class: 'btn btn-primary' %>
         <% end %>

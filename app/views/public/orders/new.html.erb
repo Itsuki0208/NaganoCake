@@ -1,0 +1,86 @@
+<div class="container takasa">
+  <div class="row">
+    <div class="col-xs-7">
+	    <h2><i class="fas fa-pen"></i>注文情報入力</h2>
+      <p><%= notice %></p>
+
+      <%= form_with model: @order, local: true, url: public_orders_confirm_path, method: :post, local:true do |f| %>
+        <h4><strong>支払い方法</strong></h4>
+        <div class="field row" style="margin-left:20px; ">
+    <!-- ラジオボタンの記述 -->
+          <label style="margin-left: 60px;"><%= f.radio_button :payment_method, Order.payment_methods.key(0) %> クレジットカード </label><br />
+          <label style="margin-left: 60px;"><%= f.radio_button :payment_method, Order.payment_methods.key(1) %> 銀行振込</label><br>
+        </div>
+
+<!-- 自身の住所  -->
+        <h4><strong>お届け先</strong></h4>
+        <div class="field row" style="margin-left:20px;">
+          <label style="margin-left: 60px;"><%= f.radio_button :seaddress, 0 %> ご自身の住所 </label><br>
+          <div style="margin-left:70px;">
+            〒<%= current_customer.postal_code %><br> <%= current_customer.address %><br><%= current_customer.last_name %><%= current_customer.first_name %>
+          </div>
+        </div>
+<!-- end -->
+
+<!-- 登録済住所 -->
+        <div>
+          <label style="margin-left: 60px;"><%= f.radio_button :address_number, 1 %> 登録済からの選択</label><br>
+          <div style="margin-left:80px; padding:0 100px;"><%= f.collection_select(:address_id, current_customer.addresses.all, :id, :full_address, { prompt: "選択してください" })%><br><br>
+          </div>
+        </div>
+<!-- end -->
+
+<!-- 新規届け先 -->
+        <label style="margin-left: 70px;"><%= f.radio_button :address_number, 2 %> 新しいお届け先</label><br>
+        <div style="display: flex; margin-left:15% ;">
+          <div  style="display: flex flex-direction: column;  flex-wrap: wrap;  width: 60px;">
+            <%= f.label :"郵便番号"%>
+            <%= f.label :"住所"%>
+            <%= f.label :"宛名"%>
+          </div>
+          <div style=" margin-left:20px; ">
+            <%= f.text_field :postal_code  %><br><br>
+            <%= f.text_field :address ,size: "60" %><br><br>
+            <%= f.text_field :name %><br><br>
+            <%= f.submit "確認画面に進む", class: "btn btn-primary text-cenrer" %>
+          </div>
+      <!-- end -->
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+    <!--<div class="col-xs-5">-->
+    <!--  % if @i.count == 20 %>-->
+    <!--  <div class="messages" style="width: 560px; height:200px;  background-color:pink; border:8px solid #FF6666;">-->
+    <!--  <div class="orei_inu" style="display:inline-block;">-->
+    <!--  %= image_tag 'orei_inu.png', size:"150x200", style:"padding-bottom: 8px;"%>-->
+    <!--  </div>-->
+    <!--  <div class="messages_text" style="text-align:center; display:inline-block;">-->
+    <!--      <h4>%= @customer.last_name %>%= @customer.first_name %>様<br>-->
+    <!--      沢山の商品をお買い上げ頂き<br>誠にありがとうございます。</h4>-->
+    <!--    </div>-->
+    <!--  <div class="orei_cat" style="display:inline-block;">-->
+    <!--  %= image_tag 'orei_cat.png', size:"150x200", style:"padding-bottom: 8px;" %>-->
+    <!--  </div>-->
+    <!--  </div>-->
+    <!--  % else %>-->
+    <!--  <div class="row">-->
+    <!--    <div class="random_item" style="background-color: pink;">-->
+    <!--      <h3>よく一緒に購入される商品</h3><br>-->
+    <!--      <div class="items" style="margin-left: 10px;">-->
+    <!--        % @item_random.each do |item_random| %>-->
+    <!--         %= attachment_image_tag item_random, :image, style:"margin-bottom:15px;", size: "100x100", fallback: "no_image.jpg"%>-->
+    <!--         %= item_random.name %>-->
+    <!--         %= (item_random.price*1.1).floor %>円（税込）-->
+    <!--         %= link_to "商品詳細はこちら", public_item_path(item_random) %><br>-->
+    <!--        % end %>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      % end %>-->
+<!--    </div>  -->
+<!--  </div>-->
+<!--</div>-->
+

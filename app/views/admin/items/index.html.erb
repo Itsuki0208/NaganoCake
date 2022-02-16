@@ -1,11 +1,14 @@
 <div class="row">
         <h2>商品一覧</h2>
+        
         <table class="table table-success table-striped">
           <thead>
-            <tr>
+            <tr class="active">
               <th>商品名</th>
               <th>商品単価</th>
+              <!--<th>ジャンル</th>-->
               <th>販売ステータス</th>
+              <th></th>
               <th colspan="3"></th>
             </tr>
           </thead>
@@ -14,10 +17,19 @@
               <tr>
                 <td><%= link_to item.name, admin_item_path(item.id)  %></td>
                 <td><%= item.price %></td>
-                <td><%= item.sales_status%></td>
+                <!--<td>%= item.genre.name %</td>-->
+                <td>
+                <% if item.sales_status == false %>
+                販売中
+                <% else %>
+                販売休止/売り切れ
+                <% end %>
+                </td>
+                <td><%= link_to "商品詳細", admin_item_path(item) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       <%= link_to '新規登録', new_admin_item_path, class: "btn btn-success" %>
+    <%= paginate @items %>
     </div>

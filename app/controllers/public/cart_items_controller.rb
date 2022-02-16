@@ -1,6 +1,5 @@
 class Public::CartItemsController < ApplicationController
-
-     before_action :authenticate_customer!
+  before_action :authenticate_customer!
 
     def index
         @cart_items = current_customer.cart_items
@@ -10,9 +9,13 @@ class Public::CartItemsController < ApplicationController
         @cart_item = CartItem.new(cart_item_params)
         @cart_item.customer_id = current_customer.id
         @cart_item.item_id = params[:item_id]
-        @cart_item.save
+        if @cart_item.save
             flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
             redirect_to public_cart_items_path
+        else
+            flash[:alert] = "個数を選択してください"
+            redirect_to public_item_path(@cart_item.item[:id])
+        end
     end
 
     def update

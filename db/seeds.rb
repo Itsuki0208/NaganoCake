@@ -8,14 +8,35 @@
 
 Admin.create!(password: 'itsuki0208', email: 'test@test.com')
 
-# Gerne.create!(name: 'ケーキ')
+Gerne.create!(
+  [
+    {name: 'ケーキ',
+     id:2
+    },
+    {name: 'プリン',
+     id:1,
+    },
+    {name: 'クッキー',
+     id:3,
+    },
+    {name: '洋菓子',
+     id:4,
+    },
+    {name: '和菓子',
+     id:5,
+    },
+    {name: 'アイスクリーム',
+     id:6,
+    },
+  ]
+  )
+    
 
-# Genre.create!(name: 'プリン')
+Item.create!(genre_id:1, name:"チョコレートケーキ", introduction:" 外はサクッと中はとろっと！", price:¥650)
 
-# Item.create(genre_id:1, name:"チョコレートケーキ", introduction:" 外はサクッと中はとろっと！", price:¥650)
+Item.create!(genre_id:1, name:"ショートケーキ", introduction:"十勝産の牛乳をふんだんに使用しております。", price:¥400)
 
-# Item.create(genre_id:1, name:"ショートケーキ", introduction:"十勝産の牛乳をふんだんに使用しております。", price:¥400)
+Item.create!(genre_id:1, name:"にんじんケーキ", introduction:" 長野名物の人参をいっぱい！", price:¥250)
 
-# Item.create(genre_id:1, name:"にんじんケーキ", introduction:" 長野名物の人参をいっぱい！", price:¥250)
+Item.create!(genre_id:1, name:"モンブラン", introduction:" 栗の味が口の中いっぱいに！", price:¥650)
 
-# Item.create(genre_id:1, name:"モンブラン", introduction:" 栗の味が口の中いっぱいに！", price:¥650)
