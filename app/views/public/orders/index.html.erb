@@ -7,6 +7,7 @@
   			<th class="col-xs-3">配送先</th>
   			<th class="col-xs-2">注文商品</th>
   			<th class="col-xs-1">支払料金</th>
+  			<th class="col-xs-1">注文個数</th>
   			<th class="col-xs-2">ステータス</th>
   			<th class="col-xs-2">注文詳細</th>
   		</tr>
@@ -24,6 +25,9 @@
     			<td class="col-xs-2"><% order.order_details.each do |order_detail| %>
     				¥<%= order_detail.price_including_tax %><br>
     				<% end %></td>
+    					<td class="col-xs-2"><% order.order_details.each do |order_detail| %>
+    				 		<%= order_detail.amount %><br>
+    					<% end %></td>
     			<td class="col-xs-2"><%= order.status %></td>
     			<td><%= link_to "表示する", public_order_path(order), class: "btn btn-primary" %></td>
     		</tr>
